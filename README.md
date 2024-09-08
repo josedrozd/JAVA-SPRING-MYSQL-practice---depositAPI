@@ -17,3 +17,10 @@ CREATE TABLE products (
     INDEX idx_uuid (uuid),
     INDEX idx_name (name)
 );
+
+Extra things:
+- Mockito Unit Tests
+- Lombok
+- Jakarta Contraint Validations
+- Exception handlings
+- JPA repository with a transactional method built with a HQL query.
