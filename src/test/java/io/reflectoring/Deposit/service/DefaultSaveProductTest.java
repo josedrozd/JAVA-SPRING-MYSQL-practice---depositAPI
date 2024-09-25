@@ -3,7 +3,9 @@ package io.reflectoring.Deposit.service;
 import io.reflectoring.Deposit.model.dto.ProductDTO;
 import io.reflectoring.Deposit.model.entity.Product;
 import io.reflectoring.Deposit.repository.ProductRepository;
-import io.reflectoring.Deposit.service.implementations.DefaultUpdateProduct;
+import io.reflectoring.Deposit.service.implementations.CreateProduct;
+import io.reflectoring.Deposit.service.implementations.DefaultSaveProduct;
+import io.reflectoring.Deposit.service.implementations.UpdateProduct;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,12 +20,16 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DefaultUpdateProductTest {
+public class DefaultSaveProductTest {
 
     @Mock
     private ProductRepository productRepository;
+    @Mock
+    private CreateProduct createProduct;
+    @Mock
+    private UpdateProduct updateProduct;
     @InjectMocks
-    private DefaultUpdateProduct instance;
+    private DefaultSaveProduct instance;
 
     @Test
     void whenProductFoundThenUpdateQuantity() {
@@ -43,8 +49,8 @@ public class DefaultUpdateProductTest {
                 .build());
 
         verify(productRepository, times(1)).findByUuid(eq(UUID));
-        verify(productRepository, times(1)).updateQuantity(eq(UUID), eq(QTY));
-        verify(productRepository, times(0)).save(any(Product.class));
+        verify(updateProduct, times(1)).accept(any());
+        verify(createProduct, times(0)).accept(any());
     }
 
     @Test
@@ -60,18 +66,13 @@ public class DefaultUpdateProductTest {
                 .build());
 
         verify(productRepository, times(1)).findByUuid(eq(UUID));
-        verify(productRepository, times(0)).updateQuantity(eq(UUID), eq(QTY));
-        verify(productRepository, times(1)).save(any(Product.class));
+        verify(updateProduct, times(0)).accept(any());
+        verify(createProduct, times(1)).accept(any());
     }
 
     @Test
     void whenNullDTOThenIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> instance.accept(null));
-    }
-
-    @Test
-    void whenNullDTOAttributesThenIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> instance.accept(ProductDTO.builder().build()));
     }
 
     @Test

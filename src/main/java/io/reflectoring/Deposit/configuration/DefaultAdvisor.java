@@ -1,6 +1,6 @@
 package io.reflectoring.Deposit.configuration;
 
-import io.reflectoring.Deposit.model.exception.NotFoundException;
+import io.reflectoring.Deposit.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
