@@ -3,8 +3,8 @@ package io.reflectoring.Deposit.service.implementations;
 import io.reflectoring.Deposit.model.dto.ProductDTO;
 import io.reflectoring.Deposit.model.enums.ProductStrategyEnum;
 import io.reflectoring.Deposit.repository.ProductRepository;
+import io.reflectoring.Deposit.service.interfaces.AddProductQuantity;
 import io.reflectoring.Deposit.service.interfaces.SaveProduct;
-import io.reflectoring.Deposit.service.interfaces.StoreProduct;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class DefaultSaveProduct implements SaveProduct {
+public class DefaultAddProductQuantity implements AddProductQuantity {
 
     private ProductRepository productRepository;
-    private Map<ProductStrategyEnum, StoreProduct> productStrategyMap;
+    private Map<ProductStrategyEnum, SaveProduct> productStrategyMap;
 
     @Autowired
-    public DefaultSaveProduct(
+    public DefaultAddProductQuantity(
             ProductRepository productRepository,
             CreateProduct createProduct,
             UpdateProduct updateProduct) {

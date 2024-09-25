@@ -4,7 +4,7 @@ import io.reflectoring.Deposit.model.dto.ProductDTO;
 import io.reflectoring.Deposit.model.entity.Product;
 import io.reflectoring.Deposit.repository.ProductRepository;
 import io.reflectoring.Deposit.service.implementations.CreateProduct;
-import io.reflectoring.Deposit.service.implementations.DefaultSaveProduct;
+import io.reflectoring.Deposit.service.implementations.DefaultAddProductQuantity;
 import io.reflectoring.Deposit.service.implementations.UpdateProduct;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DefaultSaveProductTest {
+public class DefaultAddProductQuantityTest {
 
     @Mock
     private ProductRepository productRepository;
@@ -29,7 +29,7 @@ public class DefaultSaveProductTest {
     @Mock
     private UpdateProduct updateProduct;
     @InjectMocks
-    private DefaultSaveProduct instance;
+    private DefaultAddProductQuantity instance;
 
     @Test
     void whenProductFoundThenUpdateQuantity() {

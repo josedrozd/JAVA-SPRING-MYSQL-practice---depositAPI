@@ -3,7 +3,7 @@ package io.reflectoring.Deposit.controller;
 import io.reflectoring.Deposit.model.dto.ProductDTO;
 import io.reflectoring.Deposit.service.interfaces.CalculateProductTotalWeight;
 import io.reflectoring.Deposit.service.interfaces.FindProductByUUID;
-import io.reflectoring.Deposit.service.interfaces.SaveProduct;
+import io.reflectoring.Deposit.service.interfaces.AddProductQuantity;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class ProductController {
     @Autowired
     private FindProductByUUID findProductByUUID;
     @Autowired
-    private SaveProduct saveProduct;
+    private AddProductQuantity addProductQuantity;
     @Autowired
     private CalculateProductTotalWeight calculateProductTotalWeight;
 
@@ -40,8 +40,8 @@ public class ProductController {
     * or creates a new record in the database it it does not exist.
     */
     @PutMapping
-    public ResponseEntity<Void> updateProduct(@Valid @NotNull @RequestBody ProductDTO body) {
-        saveProduct.accept(body);
+    public ResponseEntity<Void> addProductQuantity(@Valid @NotNull @RequestBody ProductDTO body) {
+        addProductQuantity.accept(body);
         return ResponseEntity.ok().build();
     }
 

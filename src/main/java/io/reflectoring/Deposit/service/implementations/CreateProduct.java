@@ -3,7 +3,7 @@ package io.reflectoring.Deposit.service.implementations;
 import io.reflectoring.Deposit.model.dto.ProductDTO;
 import io.reflectoring.Deposit.model.entity.Product;
 import io.reflectoring.Deposit.repository.ProductRepository;
-import io.reflectoring.Deposit.service.interfaces.StoreProduct;
+import io.reflectoring.Deposit.service.interfaces.SaveProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Qualifier("CREATE")
-public class CreateProduct implements StoreProduct {
+public class CreateProduct implements SaveProduct {
 
     @Autowired
     private ProductRepository productRepository;
